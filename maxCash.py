@@ -1,6 +1,7 @@
 import pyautogui
 import time
 import keyboard
+import datetime
 
 # Function to click keys on the keyboard the specified number of times
 def click_keys(keys, num_clicks):
@@ -8,6 +9,11 @@ def click_keys(keys, num_clicks):
         keyboard.press_and_release(keys)
         time.sleep(0.5)  # Adjust sleep time as needed
 
+now = datetime.datetime.now()
+#Session Counter Track the number of run throughs
+sessionCounter = 0
+#Monkey Monies Will only track session earnings
+monkeyMonies = 0
 # Hero coordinates
 hero_coords = (707, 308)
 #hero_coords = (573, 473)  -- End of the Road
@@ -33,6 +39,9 @@ OK = (951, 664)
 while True:
 # Delay before starting
     time.sleep(4)
+    #Track the session activity
+    sessionCounter = sessionCounter + 1
+    print(sessionCounter, now) 
 # Select Hero
     click_keys('u', 1)
 
@@ -106,6 +115,9 @@ while True:
     time.sleep(0.5)
     
 #Start New Match
+    print(sessionCounter, now)
+    monkeyMonies = monkeyMonies + 49
+    print(monkeyMonies)
     pyautogui.moveTo(*Next)
     time.sleep(6 * 50)
     pyautogui.moveTo(*Next)
