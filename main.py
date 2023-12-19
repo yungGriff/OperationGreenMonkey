@@ -1,7 +1,10 @@
 import pyautogui
 import time
-import keyboard
-
+import datetime
+import PIL
+import win32api
+import win32con
+"""
 # Function to click keys on the keyboard the specified number of times
 def click_keys(keys, num_clicks):
     for _ in range(num_clicks):
@@ -51,3 +54,30 @@ time.sleep(0.5)
 pyautogui.click(button='left')
 time.sleep(6)
 pyautogui.click(button='left')
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   
+"""
+homeScreen_image = 'homeScreen.png'
+print("Pillow", PIL.Image.__version__)
+try:
+    while True:
+        x, y = pyautogui.position()
+        if pyautogui.locateOnScreen(homeScreen_image, confidence=0.8) is not None:
+            print("Spotted")
+            time.sleep(1)
+        else:
+            print("Missing")
+            time.sleep(1)
+
+        print(f"Mouse position x={x}, y={y}")
+        now = datetime.datetime.now()
+        print(" ", now)
+        time.sleep(2)
+
+except KeyboardInterrupt:
+    print("Mouse tester stopped")
+
