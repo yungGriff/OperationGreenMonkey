@@ -44,22 +44,8 @@ while True:
     time.sleep(4)
     # Track the session activity
     sessionCounter = sessionCounter + 1
-    print(sessionCounter, now)
-    # Select Hero
-    click_keys('u', 1)
-
-    # Pause for demonstration purposes
-    time.sleep(1.5)
-
-    # Place Hero using mouse click
-    pyautogui.moveTo(*hero_coords)
-    time.sleep(1.5)
-
-    pyautogui.click(button='left')
-    # Pause for demonstration purposes
-    # Pause for demonstration purposes
-    time.sleep(1)
-
+    print(sessionCounter)
+    print(" ", now)
     # Select Super Monkey.
     click_keys('s', 1)
     time.sleep(1)
@@ -79,6 +65,20 @@ while True:
     pyautogui.click(*gamePlay, button='left')
     keyboard.press_and_release('esc')
     time.sleep(0.5)
+
+    # Select Hero
+    click_keys('u', 1)
+    # Pause for demonstration purposes
+    time.sleep(1.5)
+    # Place Hero using mouse click
+    pyautogui.moveTo(*hero_coords)
+    time.sleep(1.5)
+    pyautogui.click(button='left')
+    # Pause for demonstration purposes
+    # Pause for demonstration purposes
+    time.sleep(1)
+
+
     # Select Ninja.
     click_keys('d', 1)
     time.sleep(1)
