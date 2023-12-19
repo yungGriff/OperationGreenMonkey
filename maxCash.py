@@ -2,6 +2,7 @@ import pyautogui
 import time
 import keyboard
 import datetime
+import win32api, win32con
 
 
 # Function to click keys on the keyboard the specified number of times
@@ -69,10 +70,10 @@ while True:
     # Select Hero
     click_keys('u', 1)
     # Pause for demonstration purposes
-    time.sleep(1.5)
+    time.sleep(1)
     # Place Hero using mouse click
     pyautogui.moveTo(*hero_coords)
-    time.sleep(1.5)
+    time.sleep(1)
     pyautogui.click(button='left')
     # Pause for demonstration purposes
     # Pause for demonstration purposes
@@ -122,7 +123,7 @@ while True:
     monkeyMonies = monkeyMonies + 49
     print(monkeyMonies)
     pyautogui.moveTo(*Next)
-    time.sleep(6 * 50)
+    time.sleep(6 * 48)
     pyautogui.moveTo(*Next)
     time.sleep(0.5)
     pyautogui.click(button='left')
