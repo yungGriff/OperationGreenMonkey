@@ -42,7 +42,7 @@ OK = (951, 664)
 while True:
     now = datetime.datetime.now()
     # Delay before starting
-    time.sleep(4)
+    time.sleep(3)
     # Track the session activity
     sessionCounter = sessionCounter + 1
     print(sessionCounter)
@@ -60,6 +60,11 @@ while True:
     time.sleep(1)
     click_keys('/', 3)
     # PLAY the game
+    """
+    Thinking about implementing this approach to starting the game. I believe it may be considerably faster and doable without any down time and while placing the next Monkey Tower.
+    
+    click_keys('space', 2)
+    """
     pyautogui.moveTo(*gamePlay)
     pyautogui.click(button='left')
     time.sleep(0.5)
@@ -75,7 +80,6 @@ while True:
     pyautogui.moveTo(*hero_coords)
     time.sleep(1)
     pyautogui.click(button='left')
-    # Pause for demonstration purposes
     # Pause for demonstration purposes
     time.sleep(1)
 
@@ -136,7 +140,7 @@ while True:
     time.sleep(0.5)
 
     # Start a game.
-    time.sleep(5)
+    time.sleep(3.8)
     pyautogui.moveTo(*homePlay)
     time.sleep(1)
     pyautogui.click(button='left')
@@ -173,5 +177,5 @@ while True:
     pyautogui.moveTo(*OK)
     time.sleep(0.5)
     pyautogui.click(button='left')
-    time.sleep(6)
+    time.sleep(5)
     pyautogui.click(button='left')
