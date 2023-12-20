@@ -1,9 +1,10 @@
 import pyautogui
 import time
 import datetime
-import PIL
-import win32api
-import win32con
+import cv2
+import numpy as np
+from PIL import ImageGrab
+
 """
 # Function to click keys on the keyboard the specified number of times
 def click_keys(keys, num_clicks):
@@ -61,23 +62,47 @@ pyautogui.click(button='left')
 
    
 """
-homeScreen_image = 'homeScreen.png'
-print("Pillow", PIL.Image.__version__)
+
+
+def is_bad_popup_present():
+    #screenshot = pyautogui.screenshot()
+    screenshot = ImageGrab.grab()
+    screenshot_np = np.array(screenshot)
+
+    if screenshot_np.dtype != np.uint8:
+        screenshot_np = screenshot_np.astype(np.uint8)
+
+    template = cv2.imread('badPopUpBTD.png')
+
+    # convert images to grayscale
+    gray_template = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
+    gray_screenshot = cv2.cvtColor(screenshot_np, cv2.COLOR_BGR2GRAY)
+    # init ORB detector
+    # Apply template matching
+    result = cv2.matchTemplate(gray_screenshot, gray_template, cv2.TM_CCOEFF_NORMED)
+    threshold = 0.8  # Adjust this threshold as needed
+    loc = np.where(result >= threshold)
+
+    # If there are matches, consider the popup is present
+    if len(loc[0]) > 0:
+        return True
+    else:
+        return False
+
+
+# homeScreen_image = 'homeScreen.png'
+# print("Pillow", PIL.Image.__version__)
 try:
     while True:
         x, y = pyautogui.position()
-        if pyautogui.locateOnScreen(homeScreen_image, confidence=0.8) is not None:
-            print("Spotted")
+        if is_bad_popup_present():
+            print("Pop Up image found.")
             time.sleep(1)
-        else:
-            print("Missing")
-            time.sleep(1)
-
         print(f"Mouse position x={x}, y={y}")
         now = datetime.datetime.now()
         print(" ", now)
         time.sleep(2)
+        #print(cv2.__version__)
 
 except KeyboardInterrupt:
     print("Mouse tester stopped")
-
