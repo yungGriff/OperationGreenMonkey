@@ -2,10 +2,31 @@ import pyautogui
 import time
 import keyboard
 import datetime
+import sys
 import win32api, win32con
 import cv2
 from PIL import ImageGrab
 import numpy as np
+
+log_file_path = "F:/Mess/bloonsMoney.txt"
+
+log_file = open(log_file_path, 'a')
+
+
+
+class Tee:
+    def __init__(self, *files):
+        self.files = files
+
+    def write(self, obj):
+        for file in self.files:
+            file.write(obj)
+            file.flush()  # Make sure to flush the buffer
+
+    def flush(self):
+        for file in self.files:
+            file.flush()
+
 
 
 # Function to click keys on the keyboard the specified number of times
@@ -34,7 +55,7 @@ def is_bad_popup_present():
         screenshot_np = np.array(screenshot)
 
         # Load the template image
-        template = cv2.imread('testerPopUp.png', cv2.IMREAD_GRAYSCALE)
+        template = cv2.imread('realBadPopUp.png', cv2.IMREAD_GRAYSCALE)
 
         # Get template size
         template_size = template.shape[:2]
@@ -90,6 +111,8 @@ easy = (730, 437)
 Deflation = (1168, 461)
 OK = (951, 664)
 while True:
+    # Redirect stdout and stderr to both console and the log file
+    sys.stdout = Tee(sys.stdout, log_file)
     now = datetime.datetime.now()
     time.sleep(2)
     # Track the session activity
@@ -139,7 +162,9 @@ while True:
     click_keys('/', 3)
     # PLAY the game
     """
-    Thinking about implementing this approach to starting the game. I believe it may be considerably faster and doable without any down time and while placing the next Monkey Tower.
+    Thinking about implementing this approach to starting the game. 
+    I believe it may be considerably faster and doable without any down time and while placing the next Monkey Tower.
+    
     
     click_keys('space', 2)
     """
@@ -258,3 +283,4 @@ while True:
     time.sleep(5)
     pyautogui.click(button='left')
 
+log_file.close()
