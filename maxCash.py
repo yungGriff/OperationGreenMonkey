@@ -104,7 +104,7 @@ Next = (979, 749)
 homePlay = (864, 780)
 Intermediate = (864, 780)
 Expert = (1210, 817)
-anotherBrick = (673, 332)
+anotherBrick = (974, 322)
 backOnePage = (501, 447)
 endOTRoad = (1236, 323)
 easy = (730, 437)
@@ -117,6 +117,7 @@ while True:
     time.sleep(2)
     # Track the session activity
     sessionCounter = sessionCounter + 1
+    print("\n**************************************")
     print(sessionCounter)
     print(" ", now)
 
